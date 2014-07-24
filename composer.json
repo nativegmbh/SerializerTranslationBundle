@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": ">=5.3.3",
-        "avoo/serializer-translation": "dev-master@dev",
+        "avoo/serializer-translation": "0.1.*@dev",
         "jms/serializer-bundle": "~0.13"
     },
     "require-dev": {
