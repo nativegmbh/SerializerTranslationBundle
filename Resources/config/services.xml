@@ -14,13 +14,18 @@
 
     <services>
         <service id="avoo_serializer_translation.serializer.xml" class="%avoo_serializer_translation.serializer.xml.class%" public="false">
-            <call method="setMetadataFactory">
-                <argument type="service" id="jms_serializer.metadata_factory" />
-            </call>
+            <argument type="service" id="translator" />
         </service>
 
         <service id="avoo_serializer_translation.serializer.json" class="%avoo_serializer_translation.serializer.json.class%" public="false">
             <argument type="service" id="translator" />
+        </service>
+
+        <service id="avoo_serializer_translation.event_subscriber.xml" class="%avoo_serializer_translation.event_subscriber.xml.class%">
+            <tag name="jms_serializer.event_subscriber" />
+            <argument type="service" id="avoo_serializer_translation.serializer.xml" />
+            <argument type="service" id="avoo_serializer_translation.configuration.metadata_factory" />
+            <argument type="service" id="service_container" />
         </service>
 
         <service id="avoo_serializer_translation.event_subscriber.json" class="%avoo_serializer_translation.event_subscriber.json.class%">
