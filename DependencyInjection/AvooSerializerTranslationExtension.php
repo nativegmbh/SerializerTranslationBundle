@@ -28,6 +28,7 @@ namespace Avoo\SerializerTranslationBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
@@ -38,7 +39,31 @@ class AvooSerializerTranslationExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        $config = $this->processConfiguration(new Configuration(), $configs);
+
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+        $loader->load('configuration.xml');
+
+        // Based on JMSSerializerBundle
+        if ('none' === $config['metadata']['cache']) {
+            $container->removeAlias('avoo_serializer_translation.configuration.metadata.cache');
+        } elseif ('file' === $config['metadata']['cache']) {
+            $container
+                ->getDefinition('avoo_serializer_translation.configuration.metadata.cache.file_cache')
+                ->replaceArgument(0, $config['metadata']['file_cache']['dir']);
+            $dir = $container->getParameterBag()->resolveValue($config['metadata']['file_cache']['dir']);
+
+            if (!file_exists($dir)) {
+                if (!$rs = @mkdir($dir, 0777, true)) {
+                    throw new \RuntimeException(sprintf('Could not create cache directory "%s".', $dir));
+                }
+            }
+        } else {
+            $container->setAlias(
+                'avoo_serializer_translation.configuration.metadata.cache',
+                new Alias($config['metadata']['cache'], false)
+            );
+        }
     }
 }

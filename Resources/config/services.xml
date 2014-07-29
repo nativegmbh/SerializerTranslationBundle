@@ -5,46 +5,31 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="avoo_serializer_translation.metadata.yaml_driver.class">Avoo\SerializerTranslation\Metadata\Driver\YamlDriver</parameter>
-        <parameter key="avoo_serializer_translation.metadata.xml_driver.class">Avoo\SerializerTranslation\Metadata\Driver\XmlDriver</parameter>
-        <parameter key="avoo_serializer_translation.metadata.annotation_driver.class">Avoo\SerializerTranslation\Metadata\Driver\AnnotationDriver</parameter>
-        <parameter key="avoo_serializer_translation.metadata.chain_driver.class">Metadata\Driver\DriverChain</parameter>
+        <parameter key="avoo_serializer_translation.event_subscriber.xml.class">Avoo\SerializerTranslation\Serializer\EventSubscriber\XmlEventSubscriber</parameter>
+        <parameter key="avoo_serializer_translation.event_subscriber.json.class">Avoo\SerializerTranslation\Serializer\EventSubscriber\JsonEventSubscriber</parameter>
+        <parameter key="avoo_serializer_translation.serializer.xml.class">Avoo\SerializerTranslation\Serializer\XmlSerializer</parameter>
+        <parameter key="avoo_serializer_translation.serializer.json.class">Avoo\SerializerTranslation\Serializer\JsonSerializer</parameter>
+        <parameter key="avoo_serializer_translation.context.class">Avoo\SerializerTranslation\Serializer\SerializationContext</parameter>
     </parameters>
 
     <services>
-        <service id="avoo_serializer_translation.metadata.yaml_driver" class="%avoo_serializer_translation.metadata.yaml_driver.class%" public="false">
-            <argument type="service" id="jms_serializer.metadata.file_locator" />
-        </service>
-
-        <service id="avoo_serializer_translation.metadata.xml_driver" class="%avoo_serializer_translation.metadata.xml_driver.class%" public="false">
-            <argument type="service" id="jms_serializer.metadata.file_locator" />
-        </service>
-
-        <service id="avoo_serializer_translation.metadata.annotation_driver" class="%avoo_serializer_translation.metadata.annotation_driver.class%" public="false">
-            <argument type="service" id="annotation_reader" />
-        </service>
-
-        <service id="avoo_serializer_translation.metadata.chain_driver" class="%jms_serializer.metadata.chain_driver.class%" public="false">
-            <argument type="collection">
-                <argument type="service" id="avoo_serializer_translation.metadata.yaml_driver" />
-                <argument type="service" id="avoo_serializer_translation.metadata.xml_driver" />
-                <argument type="service" id="avoo_serializer_translation.metadata.annotation_driver" />
-            </argument>
-        </service>
-
-        <service id="avoo_serializer_translation.configuration.metadata.cache.file_cache" class="%jms_serializer.metadata.cache.file_cache.class%" public="false">
-            <argument></argument>
-        </service>
-
-        <service id="avoo_serializer_translation.configuration.metadata.cache" alias="avoo_serializer_translation.configuration.metadata.cache.file_cache" public="false" />
-
-        <service id="avoo_serializer_translation.configuration.metadata_factory" class="%jms_serializer.metadata.metadata_factory.class%" public="false">
-            <argument type="service" id="avoo_serializer_translation.configuration.metadata.chain_driver" />
-            <argument>Metadata\ClassHierarchyMetadata</argument>
-            <argument>%kernel.debug%</argument>
-            <call method="setCache">
-                <argument type="service" id="avoo_serializer_translation.configuration.metadata.cache" on-invalid="ignore" />
+        <service id="avoo_serializer_translation.serializer.xml" class="%avoo_serializer_translation.serializer.xml.class%" public="false">
+            <call method="setMetadataFactory">
+                <argument type="service" id="jms_serializer.metadata_factory" />
             </call>
         </service>
+
+        <service id="avoo_serializer_translation.serializer.json" class="%avoo_serializer_translation.serializer.json.class%" public="false">
+            <argument type="service" id="translator" />
+        </service>
+
+        <service id="avoo_serializer_translation.event_subscriber.json" class="%avoo_serializer_translation.event_subscriber.json.class%">
+            <tag name="jms_serializer.event_subscriber" />
+            <argument type="service" id="avoo_serializer_translation.serializer.json" />
+            <argument type="service" id="avoo_serializer_translation.configuration.metadata_factory" />
+            <argument type="service" id="service_container" />
+        </service>
+
+        <service id="avoo_serializer_translation_context" class="%avoo_serializer_translation.context.class%"/>
     </services>
 </container>

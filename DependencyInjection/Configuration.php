@@ -34,7 +34,23 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('avoo_serializer_translation');
+        $rootNode = $treeBuilder->root('avoo_serializer_translation');
+
+        $rootNode
+            ->children()
+            ->arrayNode('metadata')
+                ->addDefaultsIfNotSet()
+                ->children()
+                    ->scalarNode('cache')->defaultValue('file')->end()
+                    ->arrayNode('file_cache')
+                        ->addDefaultsIfNotSet()
+                        ->children()
+                            ->scalarNode('dir')->defaultValue('%kernel.cache_dir%/avoo')->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }
