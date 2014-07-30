@@ -5,20 +5,27 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="avoo_serializer_translation.event_subscriber.xml.class">Avoo\SerializerTranslation\Serializer\EventSubscriber\XmlEventSubscriber</parameter>
-        <parameter key="avoo_serializer_translation.event_subscriber.json.class">Avoo\SerializerTranslation\Serializer\EventSubscriber\JsonEventSubscriber</parameter>
         <parameter key="avoo_serializer_translation.serializer.xml.class">Avoo\SerializerTranslation\Serializer\XmlSerializer</parameter>
         <parameter key="avoo_serializer_translation.serializer.json.class">Avoo\SerializerTranslation\Serializer\JsonSerializer</parameter>
+
+        <parameter key="avoo_serializer_translation.event_subscriber.xml.class">Avoo\SerializerTranslation\Serializer\EventSubscriber\XmlEventSubscriber</parameter>
+        <parameter key="avoo_serializer_translation.event_subscriber.json.class">Avoo\SerializerTranslation\Serializer\EventSubscriber\JsonEventSubscriber</parameter>
+
         <parameter key="avoo_serializer_translation.context.class">Avoo\SerializerTranslation\Serializer\SerializationContext</parameter>
+
+        <parameter key="avoo_serializer_translation.expression.evaluator.class">Avoo\SerializerTranslation\Expression\ExpressionEvaluator</parameter>
+        <parameter key="avoo_serializer_translation.expression_language.class">Avoo\SerializerTranslationBundle\ExpressionLanguage\ExpressionLanguage</parameter>
     </parameters>
 
     <services>
         <service id="avoo_serializer_translation.serializer.xml" class="%avoo_serializer_translation.serializer.xml.class%" public="false">
             <argument type="service" id="translator" />
+            <argument type="service" id="avoo_serializer_translation.expression.evaluator" />
         </service>
 
         <service id="avoo_serializer_translation.serializer.json" class="%avoo_serializer_translation.serializer.json.class%" public="false">
             <argument type="service" id="translator" />
+            <argument type="service" id="avoo_serializer_translation.expression.evaluator" />
         </service>
 
         <service id="avoo_serializer_translation.event_subscriber.xml" class="%avoo_serializer_translation.event_subscriber.xml.class%">
@@ -36,5 +43,15 @@
         </service>
 
         <service id="avoo_serializer_translation_context" class="%avoo_serializer_translation.context.class%"/>
+
+        <service id="avoo_serializer_translation.expression.evaluator" class="%avoo_serializer_translation.expression.evaluator.class%">
+            <argument type="service" id="avoo_serializer_translation.expression_language" />
+            <call method="setContextVariable">
+                <argument>container</argument>
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="avoo_serializer_translation.expression_language" class="%avoo_serializer_translation.expression_language.class%" />
     </services>
 </container>
