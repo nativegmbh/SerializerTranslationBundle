@@ -6,10 +6,43 @@ SerializerTranslationBundle
 [![Build Status]
 (https://scrutinizer-ci.com/g/avoo/SerializerTranslationBundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/avoo/SerializerTranslationBundle/build-status/master)
 
+This bundle integrates [SerializerTranslation](http://github.com/avoo/SerializerTranslation)
+
+Installation
+------------
+
+Require [`avoo/serializer-translation-bundle`](https://packagist.org/packages/avoo/serializer-translation-bundle)
+into your `composer.json` file:
+
+
+``` json
+{
+    "require": {
+        "avoo/serializer-translation-bundle": "@dev-master"
+    }
+}
+```
+
+Register the bundle in `app/AppKernel.php`:
+
+``` php
+// app/AppKernel.php
+public function registerBundles()
+{
+    return array(
+        // ...
+        new Avoo\SerializerTranslationBundle\AvooSerializerTranslationBundle(),
+    );
+}
+```
+
+
 Documentation
 -------------
 
-[Read the documentation](https://github.com/avoo/SerializerTranslation/blob/master/README.md)
+This bundle integrates [SerializerTranslation](https://github.com/avoo/SerializerTranslation),
+see [Serializer translation documentation](https://github.com/avoo/SerializerTranslation/blob/master/README.md) for more details
+
 
 Credits
 -------
