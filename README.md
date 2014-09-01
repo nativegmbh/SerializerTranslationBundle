@@ -5,6 +5,10 @@ SerializerTranslationBundle
 (https://scrutinizer-ci.com/g/avoo/SerializerTranslationBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/avoo/SerializerTranslationBundle/?branch=master)
 [![Build Status]
 (https://scrutinizer-ci.com/g/avoo/SerializerTranslationBundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/avoo/SerializerTranslationBundle/build-status/master)
+[![Latest Stable Version]
+(https://poser.pugx.org/avoo/serializer-translation-bundle/v/stable.svg)](https://packagist.org/packages/avoo/serializer-translation-bundle)
+[![License]
+(https://poser.pugx.org/avoo/serializer-translation-bundle/license.svg)](https://packagist.org/packages/avoo/serializer-translation-bundle)
 
 This bundle integrates [SerializerTranslation](http://github.com/avoo/SerializerTranslation)
 
