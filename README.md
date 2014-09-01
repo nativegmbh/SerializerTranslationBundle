@@ -40,7 +40,7 @@ public function registerBundles()
 Documentation
 -------------
 
-This bundle integrates [SerializerTranslation](https://github.com/avoo/SerializerTranslation),
+This bundle integrates [SerializerTranslation](https://github.com/avoo/SerializerTranslation), translate properties from JMS serializer
 see [Serializer translation documentation](https://github.com/avoo/SerializerTranslation/blob/master/README.md) for more details
 
 
