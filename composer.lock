@@ -1,23 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "52b7f999c563da8e6601d500d47b8f23",
+    "hash": "751f485867f509e84d35ed71ad73ff44",
     "packages": [
         {
             "name": "avoo/serializer-translation",
-            "version": "dev-master",
+            "version": "0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/avoo/SerializerTranslation.git",
-                "reference": "3d9f5cd71a9e5009e484b8a24631659ec35c7666"
+                "reference": "e66de5482adb944197a36874465ef144b293a157"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/avoo/SerializerTranslation/zipball/3d9f5cd71a9e5009e484b8a24631659ec35c7666",
-                "reference": "3d9f5cd71a9e5009e484b8a24631659ec35c7666",
+                "url": "https://api.github.com/repos/avoo/SerializerTranslation/zipball/e66de5482adb944197a36874465ef144b293a157",
+                "reference": "e66de5482adb944197a36874465ef144b293a157",
                 "shasum": ""
             },
             "require": {
@@ -29,7 +29,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.1-dev"
+                    "dev-master": "1.0-dev"
                 }
             },
             "autoload": {
@@ -44,14 +44,14 @@
             "authors": [
                 {
                     "name": "Jérémy Jégou",
-                    "email": "jejevovo@gmail.com"
+                    "email": "jejeavo@gmail.com"
                 }
             ],
             "description": "Translation component for JMS Serializer",
             "keywords": [
                 "Serializer translation"
             ],
-            "time": "2014-07-23 14:56:32"
+            "time": "2015-06-01 13:40:05"
         },
         {
             "name": "doctrine/annotations",
@@ -113,7 +113,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -439,9 +439,9 @@
             ],
             "authors": [
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -489,9 +489,9 @@
             ],
             "authors": [
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -635,14 +635,12 @@
             ],
             "authors": [
                 {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
                     "name": "Symfony Community",
                     "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
                 }
             ],
             "description": "Symfony Debug Component",
@@ -802,14 +800,12 @@
             ],
             "authors": [
                 {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
                     "name": "Symfony Community",
                     "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
                 }
             ],
             "description": "Symfony Filesystem Component",
@@ -2068,17 +2064,13 @@
             "time": "2014-07-09 09:05:48"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "avoo/serializer-translation": 20
-    },
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.3.3"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
