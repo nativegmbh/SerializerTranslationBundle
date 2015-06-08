@@ -4,6 +4,12 @@
     "description": "Translation bundle for JMS Serializer",
     "keywords": ["Serializer translation"],
     "license": "MIT",
+    "repositories": [
+     {
+        "type": "vcs",
+        "url": "https://github.com/nativegmbh/SerializerTranslation.git"
+      }
+    ],    
     "require": {
         "php": ">=5.3.3",
         "nativegmbh/serializer-translation": "dev-master",
